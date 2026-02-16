@@ -28,5 +28,3 @@ return new class extends Migration
         Schema::dropIfExists('ticket_replies');
     }
 };
-
-// Lanjutkan pada menit 25:00

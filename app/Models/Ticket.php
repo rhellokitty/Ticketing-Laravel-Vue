@@ -20,4 +20,8 @@ class Ticket extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function ticketsReplies()
+    {
+        return $this->hasMany(TicketReply::class);
+    }
 }
