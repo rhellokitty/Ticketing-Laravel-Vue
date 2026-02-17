@@ -111,6 +111,6 @@ class TicketController extends Controller
         }
     }
 
-    // LANJUTKAN PADA MENIT 1:10:00
+    // LANJUTKAN PADA MENIT 1:16:00
 
 }

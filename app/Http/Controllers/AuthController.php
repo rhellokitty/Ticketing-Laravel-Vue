@@ -88,6 +88,7 @@ class AuthController extends Controller
             $user->name = $data['name'];
             $user->email = $data['email'];
             $user->password = bcrypt($data['password']);
+            $user->role = $data['role'];
             $user->save();
 
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -112,6 +113,28 @@ class AuthController extends Controller
         }
     }
 
-    // lanjutkan di menit 51:00
+    public function destroy($id)
+    {
+        try {
+            $user = User::findOrFail($id);
 
+            if (auth()->user()->role == 'user' && $user->id != auth()->user()->id) {
+                return response()->json([
+                    'message' => 'Anda tidak memiliki akses untuk menghapus user ini'
+                ], 403);
+            }
+
+            $user->delete();
+
+            return response()->json([
+                'message' => 'User Berhasil Dihapus',
+                'data' => null
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Terjadi Kesalahan',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }
