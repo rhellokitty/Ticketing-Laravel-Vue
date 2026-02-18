@@ -20,4 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('user', AuthController::class);
 
     Route::apiResource('ticket', TicketController::class);
+
+    Route::post('ticket/{code}/reply', [TicketController::class, 'storeReply']);
 });
